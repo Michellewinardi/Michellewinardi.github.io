@@ -74,13 +74,30 @@
  <script type="text/javascript" src="js/api.js"></script>
  <script type="text/javascript" src="js/tmdb.js"></script>
 
- <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-    var page = window.location.hash.substr(1);
-    getListMovie();
-    });
- </script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+        var page = window.location.hash.substr(1);
+        getListMovie();
+        });
+    </script>
 
+    <script type="text/javascript">
+    // REGISTER SERVICE WORKER
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+            navigator.serviceWorker
+                .register("js/sw.js")
+                .then(function() {
+                    console.log("Pendaftaran ServiceWorker berhasil");
+                })
+                .catch(function() {
+                    console.log("Pendaftaran ServiceWorker gagal");
+                });
+            });
+        } else {
+          console.log("ServiceWorker belum didukung browser ini.");
+        }
+    </script>
 
  </body>
 </html>
