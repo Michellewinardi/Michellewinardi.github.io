@@ -21,17 +21,17 @@
         <a href="/movie8" class="brand-logo white-text">PWEB Movie</a>
 
         <ul class="topnav right hide-on-med-and-down">
-            <li><a href="#" class="white-text">Now Playing</a></li>
-            <li><a href="#" class="white-text">Up Coming</a></li>
-            <li><a href="#" class="white-text">Popular</a></li>
-            <li><a href="#" class="white-text">Top Rated</a></li>
+            <li><a href="#playing" class="white-text">Now Playing</a></li>
+            <li><a href="#upcoming" class="white-text">Up Coming</a></li>
+            <li><a href="#popular" class="white-text">Popular</a></li>
+            <li><a href="#toprated" class="white-text">Top Rated</a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">Now Playing</a></li>
-            <li><a href="#">Up Coming</a></li>
-            <li><a href="#">Popular</a></li>
-            <li><a href="#">Top Rated</a></li>
+            <li><a href="#playing">Now Playing</a></li>
+            <li><a href="#upcoming">Up Coming</a></li>
+            <li><a href="#popular">Popular</a></li>
+            <li><a href="#toprated">Top Rated</a></li>
         </ul>
 
         <a href="#" data-target="nav-mobile" class="sidenav-trigger">
@@ -78,12 +78,41 @@
  <script type="text/javascript" src="js/api.js"></script>
  <script type="text/javascript" src="js/tmdb.js"></script>
 
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
+ <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
         var page = window.location.hash.substr(1);
-        getListMovie();
+    
+        document.querySelectorAll(".topnav a, .sidenav a")
+        .forEach(function(element) {
+
+            element.addEventListener("click", function(event) {
+                page = event.target.getAttribute("href").substr(1);
+                switch (page) {
+                    case "playing":
+                        getListMovie("movie/now_playing", "Now Playing");
+                        break;
+            
+                    case "upcoming":
+                        getListMovie("movie/upcoming", "Up Coming");
+                        break;
+
+                    case "popular":
+                        getListMovie("movie/popular", "Popular");
+                    break;
+
+                    case "toprated":
+                        getListMovie("movie/top_rated", "Top Rated");
+                    break;
+
+                }
+            });
+    
         });
-    </script>
+
+        getListMovie("movie/now_playing", "Now Playing");        
+
+    });
+</script>
 
     <script type="text/javascript">
     // REGISTER SERVICE WORKER

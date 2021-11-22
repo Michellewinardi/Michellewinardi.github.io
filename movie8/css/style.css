@@ -123,3 +123,7 @@ blockquote {
 footer.page-footer div.footer-copyright span {
   margin: 0px auto;
 }
+
+.moviecard {
+  height: 500px;
+}
